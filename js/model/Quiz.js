@@ -1,43 +1,41 @@
 class Quiz extends EventTarget {
-    constructor(vragen) {
+    constructor(questionsJSON) {
         super();
-        this.vragen=vragen;
+        this.currentIndex = 0;
+        this.questionsJSON = questionsJSON;
+        this.questionsArray = [];
         this.reset();
     }
 
-    setVorigeVraag()
-    {
-        this.huidigePlek--;
+    setPreviousQuestion() {
+        this.currentIndex--;
         this._commit();
     }
 
-    setVolgendeVraag()
-    {
-        this.huidigePlek++;
+    setNextQuestion() {
+        this.currentIndex++;
         this._commit();
     }
 
-    setGegevenAntwoord(id)
-    {
-        this.mijnVragen[this.huidigePlek].setGegevenAntwoord(id);
+    setGivenAnswer(id) {
+        this.questionsArray[this.currentIndex].setGivenAnswer(id);
         this._commit();
     }
-    getMijnVragen() {
-        return this.mijnVragen;
+    getQuestions() {
+        return this.questionsArray;
     }
 
     reset() {
-        let vraagNummer=1;
-        this.mijnVragen=[];
-        this.vragen.forEach(
-            vraag =>this.mijnVragen.push(new Vraag(vraagNummer++,vraag))
-        );
-        this.huidigePlek=0;
+        let id = 1;
+        this.questionsArray = [];
+        for(let question of this.questionsJSON) {
+            this.questionsArray.push(new Question(id++, question));
+        }
+        this.currentIndex = 0;
         this._commit();
     }
 
-    _commit()
-    {
-        this.dispatchEvent(new MijnVragenEvent(this.mijnVragen,this.huidigePlek))
+    _commit() {
+        this.dispatchEvent(new QuizEvent(this.questionsArray, this.currentIndex))
     }
 }

@@ -1,4 +1,4 @@
-let vragen = [
+let questions = [
 {
 	"question": "Web pages are designed using?",
 	"option1" : "HTML",

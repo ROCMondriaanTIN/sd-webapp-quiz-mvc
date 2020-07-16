@@ -1,34 +1,34 @@
 class Controller {
     constructor() {
-        this.mijnQuiz = new Quiz(vragen);
-        this.mijnView = new ViewBeheerder(this.mijnQuiz);
+        this.quiz = new Quiz(questions);
+        console.log(JSON.stringify(questions));
+        this.quizView = new QuizView(this.quiz);
 
         // Koppel de handlers aan de buttons
-        this.mijnView.bindVolgendeVraagButton(this.handleVolgendeVraag);
-        this.mijnView.bindVorigeVraagButton(this.handleVorigeVraag);
-        this.mijnView.bindKeuzeButton(this.handleKeuze);
-        this.mijnView.bindInleverButton(this.handleInleveren);
+        this.quizView.bindNextQuestionButton(this.handleNextQuestion);
+        this.quizView.bindPreviousQuestionButton(this.handlePreviousQuestion);
+        this.quizView.bindChoiceButton(this.handleChoice);
+        this.quizView.bindSubmitButton(this.handleSubmit);
 
         // Display eerste vraag
-        this.mijnQuiz._commit();
+        this.quiz._commit();
     }
 
-    handleVolgendeVraag = () => {
-
-       this.mijnQuiz.setVolgendeVraag();
+    handleNextQuestion = () => {
+        this.quiz.setNextQuestion();
     };
 
-    handleVorigeVraag = () => {
+    handlePreviousQuestion = () => {
 
-        this.mijnQuiz.setVorigeVraag();
+        this.quiz.setPreviousQuestion();
     };
 
-    handleKeuze = (id) => {
+    handleChoice = (id) => {
 
-       this.mijnQuiz.setGegevenAntwoord(id)
+        this.quiz.setGivenAnswer(id)
     };
 
-    handleInleveren = () => {
-       this.mijnView.toonResultaten(this.mijnQuiz);
+    handleSubmit = () => {
+        this.quizView.showResult(this.quiz);
     };
 }
