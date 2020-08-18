@@ -1,7 +1,10 @@
-class Controller {
+import {Quiz} from "../model/Quiz.js"
+import {QuizView} from "../view/QuizView.js"
+
+export class Controller {
     constructor() {
-        this.quiz = new Quiz(questions);
-        console.log(JSON.stringify(questions));
+        this.quiz = new Quiz();
+
         this.quizView = new QuizView(this.quiz);
 
         // Koppel de handlers aan de buttons
@@ -19,16 +22,14 @@ class Controller {
     };
 
     handlePreviousQuestion = () => {
-
         this.quiz.setPreviousQuestion();
     };
 
     handleChoice = (id) => {
-
         this.quiz.setGivenAnswer(id)
     };
 
     handleSubmit = () => {
-        this.quizView.showResult(this.quiz);
+        this.quizView.showResult();
     };
 }

@@ -1,8 +1,12 @@
-class Quiz extends EventTarget {
-    constructor(questionsJSON) {
+import {Question} from './Question.js'
+import questions from './Questions.js'
+import {QuizEvent} from "./QuizEvent.js";
+
+export class Quiz extends EventTarget {
+    constructor() {
         super();
+        this.questions=questions;
         this.currentIndex = 0;
-        this.questionsJSON = questionsJSON;
         this.questionsArray = [];
         this.reset();
     }
@@ -28,7 +32,7 @@ class Quiz extends EventTarget {
     reset() {
         let id = 1;
         this.questionsArray = [];
-        for(let question of this.questionsJSON) {
+        for(let question of this.questions) {
             this.questionsArray.push(new Question(id++, question));
         }
         this.currentIndex = 0;

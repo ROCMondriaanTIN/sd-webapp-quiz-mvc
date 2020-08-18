@@ -1,4 +1,4 @@
-let questions = [
+export default  [
 {
 	"question": "Web pages are designed using?",
 	"option1" : "HTML",
@@ -16,7 +16,7 @@ let questions = [
 	"answer": 3
 },
 {
-	question: "What is HTML used for?",
+	"question": "What is HTML used for?",
 	"option1" : "Skeleton of website",
 	"option2": "Design a website",
 	"option3": "Make website dynamic",
@@ -24,7 +24,7 @@ let questions = [
 	"answer": 1
 },
 {
-	"question": "Which CSS property changes background color?", 
+	"question": "Which CSS property changes background color?",
 	"option1": "colour",
 	"option2": "bgColor",
 	"option3": "color",
@@ -32,7 +32,7 @@ let questions = [
 	"answer": 4
 }, 
 {
-	"question": "Which selector selects all the elements in CSS?", 
+	"question": "Which selector selects all the elements in CSS?",
 	"option1": "*",
 	"option2": "+",
 	"option3": "$",
@@ -40,7 +40,7 @@ let questions = [
 	"answer": 1
 }, 
 {
-	"question": "What is the value of a in a+=b where a=10 & b=5?", 
+	"question": "What is the value of a in a+=b where a=10 & b=5?",
 	"option1": "10",
 	"option2": "5",
 	"option3": "15",
@@ -48,7 +48,7 @@ let questions = [
 	"answer": 3
 }, 
 {
-	"question": "What does 'document' denote in a javascript statement?", 
+	"question": "What does 'document' denote in a javascript statement?",
 	"option1": "Javascript file",
 	"option2": "Css file",
 	"option3": "HTML page",
@@ -56,7 +56,7 @@ let questions = [
 	"answer": 3
 }, 
 {
-	"question": "Which function is used to calculate an expression?", 
+	"question": "Which function is used to calculate an expression?",
 	"option1": "calculate()",
 	"option2": "calc()",
 	"option3": "evaluate()",
@@ -64,7 +64,7 @@ let questions = [
 	"answer": 4
 }, 
 {
-	"question": "How do you call a function? ", 
+	"question": "How do you call a function? ",
 	"option1": "call.function_name",
 	"option2": "function_name.call",
 	"option3": "call(function_name)",
@@ -72,11 +72,11 @@ let questions = [
 	"answer": 4
 }, 
 {
-	"question": "Javascript statements should end with a ... ", 
+	"question": "Javascript statements should end with a ... ",
 	"option1": "Comma",
 	"option2": "Semicolon",
 	"option3": "Period",
 	"option4": "Exclamation",
 	"answer": 2
 }		
-];
+]

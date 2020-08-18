@@ -1,7 +1,7 @@
-class Question {
-    constructor(id, vraagJSON) {
+export class Question {
+    constructor(id, question) {
         this.id = id;
-        this.vraagJSON = vraagJSON;
+        this.question = question;
         this.givenAnswer = -1;
     }
 
@@ -10,38 +10,38 @@ class Question {
     }
 
     getQuestion() {
-        return this.vraagJSON.question;
+        return this.question.question;
     }
 
     getOptions() {
-        return [this.vraagJSON.option1, this.vraagJSON.option2, this.vraagJSON.option3, this.vraagJSON.option4];
+        return [this.question.option1, this.question.option2, this.question.option3, this.question.option4];
     }
 
     getCorrectAnswerFull() {
-        let juisteAntwoord;
-        switch (this.vraagJSON.answer) {
-            case 1: juisteAntwoord = this.vraagJSON.option1;
+        let correctAnswer;
+        switch (this.question.answer) {
+            case 1: correctAnswer = this.question.option1;
                 break;
-            case 2: juisteAntwoord = this.vraagJSON.option2;
+            case 2: correctAnswer = this.question.option2;
                 break;
-            case 3: juisteAntwoord = this.vraagJSON.option3;
+            case 3: correctAnswer = this.question.option3;
                 break;
-            case 4: juisteAntwoord = this.vraagJSON.option4;
+            case 4: correctAnswer = this.question.option4;
                 break;
         }
-        return juisteAntwoord;
+        return correctAnswer;
     }
 
     getGivenAnswerFull() {
         let givenAnswer;
-        switch (parseInt(this.givenAnswer)) {
-            case 1: givenAnswer = this.vraagJSON.option1;
+        switch (this.givenAnswer) {
+            case 1: givenAnswer = this.question.option1;
                 break;
-            case 2: givenAnswer = this.vraagJSON.option2;
+            case 2: givenAnswer = this.question.option2;
                 break;
-            case 3: givenAnswer = this.vraagJSON.option3;
+            case 3: givenAnswer = this.question.option3;
                 break;
-            case 4: givenAnswer = this.vraagJSON.option4;
+            case 4: givenAnswer = this.question.option4;
                 break;
         }
         return givenAnswer;
@@ -53,11 +53,11 @@ class Question {
     }
 
     setGivenAnswer(givenAnswer) {
-        this.givenAnswer = givenAnswer.charAt(3);
+        this.givenAnswer = parseInt(givenAnswer.charAt(3));
     }
 
     isCorrect() {
-        if (this.vraagJSON.answer == this.givenAnswer) {
+        if (this.question.answer === this.givenAnswer) {
             return "goed";
         }
         return "fout";

@@ -1,4 +1,4 @@
-class QuizEvent extends Event {
+export class QuizEvent extends Event {
     static CHANGED = "quizChanged";
 
     constructor(questions, current) {

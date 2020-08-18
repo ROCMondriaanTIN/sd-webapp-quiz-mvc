@@ -1,7 +1,8 @@
-class QuizView {
-    constructor(model) {
-        this.model = model;
-        this.model.addEventListener(QuizEvent.CHANGED, this.onQuestionsChanged);
+import {QuizEvent} from "../model/QuizEvent.js"
+export class QuizView {
+    constructor(quiz) {
+        this.quiz = quiz;
+        this.quiz.addEventListener(QuizEvent.CHANGED, this.onQuestionsChanged);
     }
 
     getElement(selector) {
@@ -115,9 +116,8 @@ class QuizView {
     }
 
 
-    showResult(quiz) {
-        console.log("toonResultaten");
-        let questions = quiz.getQuestions();
+    showResult() {
+        let questions = this.quiz.getQuestions();
         let contentHTML = this.getElement("#content");
         contentHTML.style['display'] = 'none';
 
@@ -139,30 +139,31 @@ class QuizView {
             row.appendChild(th);
         }
 
-        for (let question in questions) {
+        for (let question of questions) {
+            console.log(questions);
             let row = table.insertRow();
 
             let cell = row.insertCell();
-            let text = document.createTextNode(questions[question].getQuestionID());
+            let text = document.createTextNode(question.getQuestionID());
             cell.appendChild(text);
 
             cell = row.insertCell();
-            text = document.createTextNode(questions[question].getQuestion());
+            text = document.createTextNode(question.getQuestion());
             cell.appendChild(text);
 
             cell = row.insertCell();
-            text = document.createTextNode(questions[question].getGivenAnswerFull());
+            text = document.createTextNode(question.getGivenAnswerFull());
             cell.appendChild(text);
 
             cell = row.insertCell();
-            text = document.createTextNode(questions[question].getCorrectAnswerFull());
+            text = document.createTextNode(question.getCorrectAnswerFull());
             cell.appendChild(text);
 
             cell = row.insertCell();
-            text = document.createTextNode(questions[question].isCorrect());
+            text = document.createTextNode(question.isCorrect());
             cell.appendChild(text);
 
-            if (questions[question].isCorrect() === "goed") {
+            if (question.isCorrect() === "goed") {
                 row.style['background-color'] = 'green';
             }
             else {
@@ -174,13 +175,12 @@ class QuizView {
         playAgainButton.id = 'start';
         playAgainButton.innerHTML = 'Nog een keer';
         playAgainButton.addEventListener('click', event => {
-            quiz.reset();
-            console.log(quiz.getQuestions());
+            this.quiz.reset();
             result.removeChild(table);
             result.removeChild(playAgainButton);
             result.style['display'] = 'none';
             contentHTML.style['display'] = 'grid';
         });
-        resultaat.appendChild(playAgainButton);
+        result.appendChild(playAgainButton);
     }
 }
